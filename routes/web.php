@@ -16,3 +16,14 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+/**
+ * App Routes
+ */
+$router->group(['prefix' => 'api'], function () use ($router){
+    /**
+     * Stocks route
+     */
+    $router->post('stocks/store', 'StockController@store');
+    $router->put('stocks/{id}/update', 'StockController@update');
+});
