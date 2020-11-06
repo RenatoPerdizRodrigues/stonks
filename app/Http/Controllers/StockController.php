@@ -56,7 +56,7 @@ class StockController extends Controller
             $stock->update($request->json()->all());
             return response()->json(['stock' => $stock,'message' => 'Code updated!'], 200);
         } else {
-            return response()->json(['message' => 'Code not found!'], 400);
+            return response()->json(['message' => 'Code not found!'], 204);
         }
     }
     

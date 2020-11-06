@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Hash;
 
-class DatabaseSeeder extends Seeder
+class UsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,7 +18,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Renato',
             'email' => 'test@gmail.com',
-            'password' => app('hash')->make('123456')
+            'password' => Hash::make('123456'),
         ]);
     }
 }

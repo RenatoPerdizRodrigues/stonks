@@ -22,8 +22,13 @@ $router->get('/', function () use ($router) {
  */
 $router->group(['prefix' => 'api'], function () use ($router){
     /**
-     * Stocks route
+     * Stock routes
      */
     $router->post('stocks/store', 'StockController@store');
     $router->put('stocks/{id}/update', 'StockController@update');
+
+    /**
+     * Operation routes
+     */
+    $router->post('operations/store', 'OperationController@store');
 });
