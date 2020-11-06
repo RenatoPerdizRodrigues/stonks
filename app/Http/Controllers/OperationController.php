@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Operation;
+use App\Models\Wallet;
 
 class OperationController extends Controller
 {
@@ -38,6 +39,18 @@ class OperationController extends Controller
 
         try {
             $operation = Operation::create($request->json()->all());
+            $wallet = Wallet::where('user_id', $request->json('user_id'))
+                            ->where('stock_id',$request->json('stock_id'))
+                            ->first();
+
+            if(!$wallet){
+                try {
+                    Wallet::create($request->json()->all());
+                } catch (\Exception $e) {
+                    return response()->json(['message' => 'Error: ' . $e->getMessage()], 203);
+                }
+            }
+
             return response()->json(['id' => $operation->id,'message' => 'New operation successfully stored!'], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Error: ' . $e->getMessage()], 203);

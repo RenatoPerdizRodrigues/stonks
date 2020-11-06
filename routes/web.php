@@ -31,4 +31,10 @@ $router->group(['prefix' => 'api'], function () use ($router){
      * Operation routes
      */
     $router->post('operations/store', 'OperationController@store');
+
+    /**
+     * Wallet routes
+     */
+    $router->post('wallet/profit', 'WalletController@profit');
+    $router->get('wallet/{id}', 'WalletController@index');
 });
